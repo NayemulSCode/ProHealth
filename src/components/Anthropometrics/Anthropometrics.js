@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AnthropContext, useGlobalContext } from '../../context/Context';
 import './Anthropo.css';
-const Input = ({ name, register, required }) => (
+const Input = ({name, register, required }) => (
     <>
       <input {...register(name, { required })} />
     </>
   );
-const HarrisBenedict = 1;
-const KatchMcArdle = 2;
 const Anthropometrics = () => {
     const {
         height,
@@ -26,7 +24,6 @@ const Anthropometrics = () => {
         setGender,
         setEnergyNeed,
     } = useGlobalContext(AnthropContext);
-    console.log("age",age);
     const { register,formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data,e) => {
         e.preventDefault();
@@ -48,22 +45,26 @@ const Anthropometrics = () => {
         setActive(active);
         setGender(gender);
     }
+    // calculate benedict
     const handleExerciseEnergyExpenditure = ()=>{
-        if(HarrisBenedict===1 && gender==='male'){
+        if(gender==='male'){
             let EEF = Math.round((66.6+(13.7*weight)+(5 * height)-(6.8*age))*active);
             setEnergyNeed(EEF);
         }
-        if(HarrisBenedict===1 && gender==='female'){
+        if( gender==='female'){
             let EEF = Math.round((655+(9.6*weight)+(1.85*height)-(4.7*age))*active);
             setEnergyNeed(EEF);
         }
     }
+    // 
     const handleKatchMcArdle = () =>{
-        if(KatchMcArdle===2){
             let EEF = Math.round((370 + (21.6*leanMass))*active);
             setEnergyNeed(EEF);
-        }
+        
     }
+    // const pop = useCallback(() => {
+    //     setEnergyNeed(energyNeed => !energyNeed);
+    //  }, []);
     return (
         <div className="calulator-table" id="tracker">
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -95,18 +96,18 @@ const Anthropometrics = () => {
                     </tr>
                     <tr>
                         <td>Height (in.)</td>
-                        <td><Input name="height" register={register} required /></td>
+                        <td><Input value={height} name="height" register={register} required /></td>
                     </tr>
                     <tr>
                         <td>Body Fat(%)</td>
-                        <td><Input name="bodyFat" register={register} required /></td>
+                        <td><Input  name="bodyFat" register={register} required /></td>
                     </tr>
                     <tr>
                         <td>Activity Level (1.0-2.0)</td>
                         <td><Input name="active" register={register} required /></td>
                     </tr>
                     <tr>
-                        <td><button  >clean</button><button onClick={handleKatchMcArdle()} >BMR (K.Mc)</button><button onClick={handleExerciseEnergyExpenditure()} className="btn btn-info small" type="submit" >BMR (H.Benedict)</button></td>
+                        <td><button onClick={handleKatchMcArdle} >BMR (K.Mc)</button><button onClick={handleExerciseEnergyExpenditure} className="btn btn-info small" type="submit" >BMR (H.Benedict)</button></td>
                         <td><h5>
                             {energyNeed}
                         </h5></td>

@@ -10,7 +10,7 @@ const AnthropProvider = ({children}) =>{
     const [leanMass, setLeanMass] = useState("");
     const [active, setActive] = useState("");
     const [gender, setGender] = useState("");
-    const [energyNeed, setEnergyNeed] = useState("")
+    const [energyNeed, setEnergyNeed] = useState(0);
     return (
         <AnthropContext.Provider
             value={{
