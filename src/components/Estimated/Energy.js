@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AnthropContext, useGlobalContext } from '../../context/Context';
 const Energy = () => {
-const {weight} = useGlobalContext(AnthropContext);
+const {weight,setCalorie} = useGlobalContext(AnthropContext);
 const weights = parseFloat(weight).toFixed(2)
 const [refs]=useState({
     tCalorie: React.createRef(),
@@ -26,16 +26,15 @@ const onChange=(e)=>{
     const {name, value} = e.target;
     vars[name] = value;
     const tCalorie = parseFloat(refs.tCalorie.current.value).toFixed(2);
+    setCalorie(tCalorie);
     const grams = parseFloat(refs.grams.current.value).toFixed(2);
     const tCarbs = parseFloat(refs.tCarbs.current.value).toFixed(2);
     const pOfCals = parseFloat(refs.pOfCals.current.value).toFixed(2);
     
-// value assign inot input filed after calculating
+// value assign into input filed after calculating
     if (name === 'tCarbs') refs.tCarbs.current.value = grams * weights;
     console.log(tCarbs);
     if (name === 'pOfCals') refs.pOfCals.current.value = ((tCarbs*4)/tCalorie)*100;
-
-
 }
 
 return ( 
