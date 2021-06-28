@@ -29,7 +29,7 @@ const Protein = () => {
         const pOfCals = parseFloat(refs.pOfCals.current.value).toFixed(2);
         
     // value assign into input filed after calculating
-        if (name === 'tProtein') refs.tProtein.current.value = (grams * weights).toFixed(2);
+        if (name === 'tProtein') refs.tProtein.current.value = Math.round(grams * weights);
         console.log(tProtein);
         if (name === 'pOfCals') refs.pOfCals.current.value = (((tProtein*4)/calorie)*100).toFixed(2);
     }

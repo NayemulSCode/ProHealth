@@ -32,9 +32,9 @@ const onChange=(e)=>{
     const pOfCals = parseFloat(refs.pOfCals.current.value).toFixed(2);
     
 // value assign into input filed after calculating
-    if (name === 'tCarbs') refs.tCarbs.current.value = grams * weights;
+    if (name === 'tCarbs') refs.tCarbs.current.value = Math.round(grams * weights);
     console.log(tCarbs);
-    if (name === 'pOfCals') refs.pOfCals.current.value = ((tCarbs*4)/tCalorie)*100;
+    if (name === 'pOfCals') refs.pOfCals.current.value = (((tCarbs*4)/tCalorie)*100).toFixed(2);
 }
 
 return ( 
