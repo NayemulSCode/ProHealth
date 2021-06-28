@@ -12,6 +12,8 @@ const AnthropProvider = ({children}) =>{
     const [gender, setGender] = useState("");
     const [energyNeed, setEnergyNeed] = useState(0);
     const [calorie, setCalorie] = useState(0);
+    // step 4 food exchange
+    const [serving, setServing] = useState(0);
     return (
         <AnthropContext.Provider
             value={{
@@ -24,6 +26,7 @@ const AnthropProvider = ({children}) =>{
                 gender,
                 energyNeed,
                 calorie,
+                serving,
                 setAge,
                 setHeight,
                 setWeight,
@@ -32,6 +35,8 @@ const AnthropProvider = ({children}) =>{
                 setGender,
                 setEnergyNeed,
                 setCalorie,
+                setServing,
+
             }}
         >
             {children}

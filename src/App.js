@@ -4,6 +4,7 @@ import EnergyNeed from './components/EnergyNeed/EnergyNeed';
 import Energy from './components/Estimated/Energy';
 import Protein from './components/Estimated/Protein';
 import Recommendation from './components/Estimated/Recommendation';
+import ServingNumbers from './components/ServingNumbers/ServingNumbers';
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
       <Energy />
       <Protein />
       <Recommendation />
+      <ServingNumbers />
     </div>
   );
 }
