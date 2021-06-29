@@ -1,25 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnthropContext, useGlobalContext } from "../../context/Context";
 
 const CarbsSeving = () => {
-    const {calorie,setServing} = useGlobalContext(AnthropContext);
-    const [starchyVegies, setStarchyVegies] = useState(null)
-    const [fruit, setFruit] = useState(null)
-    const [beans, setBeans] = useState(null)
-    const [grains, setGrains] = useState(null)
-    const [otherCarb, setOtherCarb] = useState(null)
-    const [dairy, setDairy] = useState(null)
-    const [nonStarchyVegies, setNonStarchyVegies] = useState(null)
-    const handleSubmit =(e)=>{
+    const {
+        calorie,
+        setStarchyVegiesServing,
+        setFruitServing,
+        setBeansServing,
+        setGrainsServing,
+        setOtherCarbServing,
+        setDairyServing,
+        setNonStarchyVegiesServing,
+    } = useGlobalContext(AnthropContext);
+    const [starchyVegies, setStarchyVegies] = useState(null);
+    const [fruit, setFruit] = useState(null);
+    const [beans, setBeans] = useState(null);
+    const [grains, setGrains] = useState(null);
+    const [otherCarb, setOtherCarb] = useState(null);
+    const [dairy, setDairy] = useState(null);
+    const [nonStarchyVegies, setNonStarchyVegies] = useState(null);
+    const handleSubmit = (e) => {
         e.preventDefault();
+    };
+    function updateSubTotal() {
+        let table = document.getElementById("carbtable");
+
+        let totalcarbs = Array.from(table.rows)
+            .slice(1)
+            .reduce((total, row) => {
+                return total + parseFloat(row.cells[2].innerHTML);
+            }, 0);
+        document.getElementById("totalcarbs").innerHTML = " " + totalcarbs;
+
+        let carbServingTotal = Array.from(table.rows)
+            .slice(1)
+            .reduce((total, row) => {
+                return total + parseFloat(row.cells[4].innerHTML);
+            }, 0);
+        document.getElementById("carbServingTotal").innerHTML =
+            "# OF SERVINGS: " + carbServingTotal;
     }
+
+    useEffect(() => {
+        updateSubTotal();
+    }, [updateSubTotal]);
+
     return (
         <div className="calulator-table" id="tracker">
             <form className="form" onSubmit={handleSubmit}>
-                <table className="table-fill">
+                <table className="table-fill" id="carbtable">
                     <thead>
                         <tr>
-                            <th colSpan={2}>Carbohydrates</th>
+                            <th>Carbohydrates</th>
                             <th>Total Carbs (g)</th>
                             <th>Net Carbs (g)</th>
                             <th>% of total cals</th>
@@ -28,15 +60,15 @@ const CarbsSeving = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td colSpan={2}>Pre/Post Drinks & Bone Broth</td>
+                            <td>Pre/Post Drinks & Bone Broth</td>
+                            <td></td>
                             <td>0</td>
                             <td>0</td>
-                            <td>0%</td>
-                            <td>N/A</td>
+                            <td>0</td>
                         </tr>
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="starchyVegies">
                                     {" "}
                                     starchyVegies{" "}
@@ -57,14 +89,14 @@ const CarbsSeving = () => {
                                 {Math.round(
                                     ((4 * starchyVegies) / calorie) * 100
                                 )}
-                                %
                             </td>
-                            <td>{Math.round(starchyVegies / 15)}</td>
+                            <td>{(starchyVegies / 15).toFixed(2)}{setStarchyVegiesServing((starchyVegies / 15).toFixed(2))}</td>
+                            {/* {setStarchyVegiesServing(starchyVegies / 15).toFixed(2)} */}
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="fruit"> fruit </label>
                             </td>
                             <td>
@@ -78,18 +110,16 @@ const CarbsSeving = () => {
                                 />
                             </td>
                             <td>24</td>
+                            <td>{Math.round(((4 * fruit) / calorie) * 100)}</td>
                             <td>
-                                {Math.round(((4 * fruit) / calorie) * 100)}%
-                            </td>
-                            <td>
-                                {Math.round(fruit / 15)}
-                                {setServing(Math.round(fruit / 15))}
+                                {(fruit / 15).toFixed(2)}
+                                {setFruitServing((fruit / 15).toFixed(2))}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="beans"> beans </label>
                             </td>
                             <td>
@@ -103,18 +133,16 @@ const CarbsSeving = () => {
                                 />
                             </td>
                             <td>0</td>
+                            <td>{Math.round(((4 * beans) / calorie) * 100)}</td>
                             <td>
-                                {Math.round(((4 * beans) / calorie) * 100)}%
-                            </td>
-                            <td>
-                                {Math.round(beans / 15)}
-                                {setServing(Math.round(beans / 15))}
+                                {(beans / 15).toFixed(2)}
+                                {setBeansServing((beans / 15).toFixed(2))}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="grains"> grains </label>
                             </td>
                             <td>
@@ -129,17 +157,17 @@ const CarbsSeving = () => {
                             </td>
                             <td>12</td>
                             <td>
-                                {Math.round(((4 * grains) / calorie) * 100)}%
+                                {Math.round(((4 * grains) / calorie) * 100)}
                             </td>
                             <td>
-                                {Math.round(grains / 15)}
-                                {setServing(Math.round(grains / 15))}
+                                {(grains / 15).toFixed(2)}
+                                {setGrainsServing((grains / 15).toFixed(2))}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="otherCarb"> other Carb </label>
                             </td>
                             <td>
@@ -154,17 +182,17 @@ const CarbsSeving = () => {
                             </td>
                             <td>0</td>
                             <td>
-                                {Math.round(((4 * otherCarb) / calorie) * 100)}%
+                                {Math.round(((4 * otherCarb) / calorie) * 100)}
                             </td>
                             <td>
-                                {Math.round(otherCarb / 15)}
-                                {setServing(Math.round(otherCarb / 15))}
+                                {(otherCarb / 15).toFixed(2)}
+                                {setOtherCarbServing((otherCarb / 15).toFixed(2))}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="dairy"> dairy </label>
                             </td>
                             <td>
@@ -178,18 +206,16 @@ const CarbsSeving = () => {
                                 />
                             </td>
                             <td>0</td>
+                            <td>{Math.round(((4 * dairy) / calorie) * 100)}</td>
                             <td>
-                                {Math.round(((4 * dairy) / calorie) * 100)}%
-                            </td>
-                            <td>
-                                {Math.round(dairy / 12)}
-                                {setServing(Math.round(dairy / 15))}
+                                {(dairy / 12).toFixed(2)}
+                                {setDairyServing((dairy / 15).toFixed(2))}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 15 g)</td>
                             <td>
+                                (1 serv = 15 g)
                                 <label htmlFor="nonStarchyVegies">
                                     {" "}
                                     Non Starchy Vegies{" "}
@@ -210,24 +236,24 @@ const CarbsSeving = () => {
                                 {Math.round(
                                     ((4 * nonStarchyVegies) / calorie) * 100
                                 )}
-                                %
                             </td>
                             <td>
-                                {Math.round(nonStarchyVegies / 5)}
-                                {setServing(Math.round(nonStarchyVegies / 15))}
+                                {(nonStarchyVegies / 5).toFixed(2)}
+                                {setNonStarchyVegiesServing((nonStarchyVegies / 15).toFixed(2))}
                             </td>
                         </tr>
 
                         <tr>
-                            <td></td>
                             <td>Carbs from plant-based protein and avocado</td>
                             <td>23</td>
                             <td>7</td>
-                            <td>3%</td>
-                            <td>N/A</td>
+                            <td>3</td>
+                            <td>0</td>
                         </tr>
                     </tbody>
                 </table>
+                <span id="totalcarbs"></span>
+                <span id="carbServingTotal"></span>
             </form>
         </div>
     );
