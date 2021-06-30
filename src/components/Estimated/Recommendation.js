@@ -22,31 +22,31 @@ const Recommendation = () => {
                 return total + parseFloat(row.cells[2].innerHTML);
             }, 0);
             console.log(calorie)
-            document.getElementById("val").innerHTML = "SubTotal = $" + calorie;
+            document.getElementById("val").innerHTML = "" + calorie;
 
             var crabs = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[3].innerHTML);
             }, 0);
             console.log(crabs)
-            document.getElementById("crabs").innerHTML = " =" + crabs;
+            document.getElementById("crabs").innerHTML = " " + crabs;
 
             var protien = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[4].innerHTML);
             }, 0);
             console.log(protien)
-            document.getElementById("protien").innerHTML = " =" + protien;
+            document.getElementById("protien").innerHTML = " " + protien;
 
             var fat = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[5].innerHTML);
             }, 0);
             console.log(fat)
-            document.getElementById("protien").innerHTML = " =" + fat;
+            document.getElementById("protien").innerHTML = " " + fat;
 
             var fiber = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[6].innerHTML);
             }, 0);
             console.log(fiber)
-            document.getElementById("fiber").innerHTML = " =" + fiber;
+            document.getElementById("fiber").innerHTML = " " + fiber;
         }
     
     useEffect(()=>{
@@ -171,11 +171,20 @@ const Recommendation = () => {
                     </tr>
                 </tbody>
             </table>
-            <span id="val"></span>
-            <span id="crabs"></span>
-            <span id="protien"></span>
-            <span id="fat"></span>
-            <span id="fiber"></span>
+            <div className="total">
+                <div className="totalHead">
+                    <h4>Drink Total</h4>
+                </div>
+                <div className="totalValue">
+                    <span id="val"></span>
+            <span id="crabs" style={{marginLeft:"32px"}}></span>
+            <span id="protien" style={{marginLeft:"5px"}}></span>
+            <span id="fat" style={{marginLeft:"5px"}}></span>
+            <span id="fiber" style={{marginLeft:"10px"}}></span>
+                </div>
+                
+            </div>
+            
         </form> 
         </div>
     )
