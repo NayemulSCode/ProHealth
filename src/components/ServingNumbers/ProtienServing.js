@@ -27,7 +27,7 @@ const ProtienSeving = () => {
                 return total + parseFloat(row.cells[3].innerHTML);
             }, 0);
         document.getElementById("totalFatServing").innerHTML =
-            "totalFatServing = $" + totalFatServing;
+            "# OF Ounces: " + totalFatServing;
     }
 
     useEffect(() => {
@@ -40,10 +40,10 @@ const ProtienSeving = () => {
                 <table className="table-fill" id="proteintable">
                     <thead>
                         <tr>
-                            <th>Carbohydrates</th>
-                            <th>Total Carbs (g)</th>
+                            <th>Protien</th>
+                            <th>Grams</th>
                             <th>% of total cals</th>
-                            <th>Servings</th>
+                            <th>ounces</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,11 +60,9 @@ const ProtienSeving = () => {
                             <td>0</td>
                         </tr>
                         <tr>
-                            <td>(1 serv = 7 g)
-                                <label htmlFor="lean">
-                                    {" "}
-                                    lean{" "}
-                                </label>
+                            <td>
+                                (1 serv = 7 g)
+                                <label htmlFor="lean"> lean </label>
                             </td>
                             <td>
                                 <input
@@ -76,18 +74,20 @@ const ProtienSeving = () => {
                                     type="text"
                                 />
                             </td>
+                            <td>{Math.round(((4 * lean) / calorie) * 100)}</td>
                             <td>
-                                {Math.round(
-                                    ((4 * lean) / calorie) * 100
-                                )}
-                            
+                                {(lean / 7).toFixed(2)}
+                                {setLeanServing((lean / 7).toFixed(2))}
                             </td>
-                            <td>{(lean / 7).toFixed(2)}{setLeanServing((lean / 7).toFixed(2))}</td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 7 g)
-                                <label htmlFor="mediumFatProtein"> mediumFatProtein </label>
+                            <td>
+                                (1 serv = 7 g)
+                                <label htmlFor="mediumFatProtein">
+                                    {" "}
+                                    mediumFatProtein{" "}
+                                </label>
                             </td>
                             <td>
                                 <input
@@ -100,17 +100,25 @@ const ProtienSeving = () => {
                                 />
                             </td>
                             <td>
-                                {Math.round(((4 * mediumFatProtein) / calorie) * 100)}
+                                {Math.round(
+                                    ((4 * mediumFatProtein) / calorie) * 100
+                                )}
                             </td>
                             <td>
                                 {(mediumFatProtein / 7).toFixed(2)}
-                                {setMediumFatProteinServing((mediumFatProtein / 7).toFixed(2))}
+                                {setMediumFatProteinServing(
+                                    (mediumFatProtein / 7).toFixed(2)
+                                )}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 7 g)
-                                <label htmlFor="highProtien"> highProtien </label>
+                            <td>
+                                (1 serv = 7 g)
+                                <label htmlFor="highProtien">
+                                    {" "}
+                                    highProtien{" "}
+                                </label>
                             </td>
                             <td>
                                 <input
@@ -123,25 +131,31 @@ const ProtienSeving = () => {
                                 />
                             </td>
                             <td>
-                                {Math.round(((4 * highProtien) / calorie) * 100)}
+                                {Math.round(
+                                    ((4 * highProtien) / calorie) * 100
+                                )}
                             </td>
                             <td>
                                 {(mediumFatProtein / 7).toFixed(2)}
-                                {setHighProtienServing((highProtien / 7).toFixed(2))}
+                                {setHighProtienServing(
+                                    (highProtien / 7).toFixed(2)
+                                )}
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                Plant-based protein
-                            </td>
+                            <td>Plant-based protein</td>
                             <td></td>
                             <td></td>
                             <td>0</td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 7 g)
-                                <label htmlFor="lowFiberNut"> lowFiberNut </label>
+                            <td>
+                                (1 serv = 7 g)
+                                <label htmlFor="lowFiberNut">
+                                    {" "}
+                                    lowFiberNut{" "}
+                                </label>
                             </td>
                             <td>
                                 <input
@@ -154,17 +168,25 @@ const ProtienSeving = () => {
                                 />
                             </td>
                             <td>
-                                {Math.round(((4 * lowFiberNut) / calorie) * 100)}
+                                {Math.round(
+                                    ((4 * lowFiberNut) / calorie) * 100
+                                )}
                             </td>
                             <td>
                                 {(lowFiberNut / 7).toFixed(2)}
-                                {setLowFiberNutServing((lowFiberNut / 7).toFixed(2))}
+                                {setLowFiberNutServing(
+                                    (lowFiberNut / 7).toFixed(2)
+                                )}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 5 g)
-                                <label htmlFor="medFiberNut"> medFiberNut </label>
+                            <td>
+                                (1 serv = 5 g)
+                                <label htmlFor="medFiberNut">
+                                    {" "}
+                                    medFiberNut{" "}
+                                </label>
                             </td>
                             <td>
                                 <input
@@ -177,17 +199,25 @@ const ProtienSeving = () => {
                                 />
                             </td>
                             <td>
-                                {Math.round(((4 * medFiberNut) / calorie) * 100)}
+                                {Math.round(
+                                    ((4 * medFiberNut) / calorie) * 100
+                                )}
                             </td>
                             <td>
                                 {(medFiberNut / 5).toFixed(2)}
-                                {setmedFiberNutServing((medFiberNut / 5).toFixed(2))}
+                                {setmedFiberNutServing(
+                                    (medFiberNut / 5).toFixed(2)
+                                )}
                             </td>
                         </tr>
 
                         <tr>
-                            <td>(1 serv = 5 g)
-                                <label htmlFor="highFiberNut"> highFiberNut </label>
+                            <td>
+                                (1 serv = 5 g)
+                                <label htmlFor="highFiberNut">
+                                    {" "}
+                                    highFiberNut{" "}
+                                </label>
                             </td>
                             <td>
                                 <input
@@ -200,16 +230,28 @@ const ProtienSeving = () => {
                                 />
                             </td>
                             <td>
-                                {Math.round(((4 * highFiberNut) / calorie) * 100)}
+                                {Math.round(
+                                    ((4 * highFiberNut) / calorie) * 100
+                                )}
                             </td>
                             <td>
                                 {(highFiberNut / 5).toFixed(2)}
-                                {setHighFiberNutServing((highFiberNut / 5).toFixed(2))}
+                                {setHighFiberNutServing(
+                                    (highFiberNut / 5).toFixed(2)
+                                )}
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <span id="totalFatServing"></span>
+
+                <span
+                    id="totalFatServing"
+                    style={{
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                        marginRight: "6rem",
+                    }}
+                ></span>
             </form>
         </div>
     );

@@ -4,7 +4,8 @@ import { AnthropContext, useGlobalContext } from "../../context/Context";
 const FatServing = () => {
     const { calorie, setOilSolidFatsServing,
         setAvocadoServing, } = useGlobalContext(AnthropContext);
-    const [oilSolidFats, setOilSolidFats] = useState(null);
+    // const [oilSolidFats, setOilSolidFats] = useState(null);
+    let oilSolidFats;
     const [avocado, setAvocado] = useState(null);
 
     const handleSubmit = (e) => {
@@ -69,16 +70,7 @@ const FatServing = () => {
                                 </label>
                             </td>
                             <td>
-                                <input
-                                    onKeyUpCapture={(e) =>
-                                        setOilSolidFats(e.target.value)
-                                    }
-                                    onChange={(e)=> setOilSolidFats(e.target.value)}
-                                    name=""
-                                    id="oilSolidFats"
-                                    value={oilSolidFats}
-                                    type="text"
-                                />
+                                {oilSolidFats = 146}
                             </td>
                             <td>
                                 {Math.round(
@@ -87,7 +79,7 @@ const FatServing = () => {
                             
                             </td>
                            
-                            <td>{(oilSolidFats / 14).toFixed(2)} {setOilSolidFatsServing((oilSolidFats / 15).toFixed(2))}</td>
+                            <td>{(oilSolidFats / 14).toFixed(2)} {setOilSolidFatsServing((oilSolidFats / 14).toFixed(2))}</td>
                         </tr>
 
                         <tr>
@@ -117,9 +109,11 @@ const FatServing = () => {
 
                         </tbody>
                 </table>
-                <span id="totatlFat"></span>
-                <span id="fatTotalServ"></span>
-                <span id="beans"></span>
+                <span id="fatTotalServ" style={{
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                        marginRight: "5rem",
+                    }}></span>
             </form>
         </div>
     );

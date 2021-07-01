@@ -1,20 +1,31 @@
 html {
-  background-color: #FFFFF8;
+    background-color: #fffff8;
 }
 .App {
-  text-align: center;
+    text-align: center;
 }
 .table {
-  display: inline-block;
-  background-color: #61dafb
+    display: inline-block;
+    background-color: #61dafb;
 }
 
-#tracker input{
-  float:right;
-  clear:right
+#tracker input {
+    float: right;
+    clear: right;
 }
 #tracker label {
-  float:left;
-  clear:left;
+    float: left;
+    clear: left;
 }
-
+.total {
+    display: grid;
+    grid-template-columns: 32rem 1fr;
+}
+.totalValue {
+    display: grid;
+    grid-auto-flow: column;
+}
+.totalValue span{
+  text-align: start;
+  margin-left: 2px;
+}

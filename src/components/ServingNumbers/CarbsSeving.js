@@ -239,7 +239,7 @@ const CarbsSeving = () => {
                             </td>
                             <td>
                                 {(nonStarchyVegies / 5).toFixed(2)}
-                                {setNonStarchyVegiesServing((nonStarchyVegies / 15).toFixed(2))}
+                                {setNonStarchyVegiesServing((nonStarchyVegies / 5).toFixed(2))}
                             </td>
                         </tr>
 
@@ -252,8 +252,8 @@ const CarbsSeving = () => {
                         </tr>
                     </tbody>
                 </table>
-                <span id="totalcarbs"></span>
-                <span id="carbServingTotal"></span>
+                <span id="totalcarbs" style={{marginLeft:"25rem"}}></span>
+                <span id="carbServingTotal" style={{marginLeft:"4rem"}}></span>
             </form>
         </div>
     );

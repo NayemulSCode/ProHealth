@@ -5,6 +5,7 @@ import Energy from './components/Estimated/Energy';
 import Protein from './components/Estimated/Protein';
 import Recommendation from './components/Estimated/Recommendation';
 import ServingNumbers from './components/ServingNumbers/ServingNumbers';
+import FoodExchangeTable from './components/foodExchange/FoodExchangeTable';
 
 import MultiStep from 'react-multistep'
 
@@ -14,6 +15,7 @@ import MultiStep from 'react-multistep'
   { name:'Protein', component: <Protein /> },
   { name:'Recommendation', component: <Recommendation /> },
   { name:'Serving', component: <ServingNumbers /> },
+  { name:'Serving', component: <FoodExchangeTable /> },
 ]
 const prevStyle = {'background': '#33c3f0', 'border-width': '2px', 'padding':'10px'}
 const nextStyle = {'background': '#33c3f0',  'border-width': '2px', 'padding':'10px', 'margin-left':'5px'}
