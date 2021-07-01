@@ -9,8 +9,8 @@ import FoodExchangeTable from './components/foodExchange/FoodExchangeTable';
 function App() {
   return (
     <div className="App">
-      <h1 className="">Health app</h1>
-      <Anthropometrics />
+      <MultiStep showNavigation={true} steps={steps} prevStyle={prevStyle} nextStyle={nextStyle} />
+      {/* <Anthropometrics />
       <EnergyNeed />
       <Energy />
       <Protein />
