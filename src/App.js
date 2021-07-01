@@ -21,12 +21,6 @@ function App() {
   return (
     <div className="App">
       <MultiStep showNavigation={true} steps={steps} prevStyle={prevStyle} nextStyle={nextStyle} />
-      {/* <Anthropometrics />
-      <EnergyNeed />
-      <Energy />
-      <Protein />
-      <Recommendation />
-      <ServingNumbers /> */}
     </div>
   );
 }

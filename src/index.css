@@ -7,3 +7,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+.totalDiv{
+  display: flex;
+  font-weight: 700;
+  font-size: large;
+}

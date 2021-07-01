@@ -22,31 +22,31 @@ const Recommendation = () => {
                 return total + parseFloat(row.cells[2].innerHTML);
             }, 0);
             console.log(calorie)
-            document.getElementById("val").innerHTML = "SubTotal = $" + calorie;
+            document.getElementById("val").innerHTML = " " + calorie;
 
             var crabs = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[3].innerHTML);
             }, 0);
             console.log(crabs)
-            document.getElementById("crabs").innerHTML = " =" + crabs;
+            document.getElementById("crabs").innerHTML = " " + crabs;
 
             var protien = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[4].innerHTML);
             }, 0);
             console.log(protien)
-            document.getElementById("protien").innerHTML = " =" + protien;
+            document.getElementById("protien").innerHTML = " " + protien;
 
             var fat = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[5].innerHTML);
             }, 0);
             console.log(fat)
-            document.getElementById("protien").innerHTML = " =" + fat;
+            document.getElementById("fat").innerHTML = " " + fat;
 
             var fiber = Array.from(table.rows).slice(1).reduce((total, row) => {
                 return total + parseFloat(row.cells[6].innerHTML);
             }, 0);
             console.log(fiber)
-            document.getElementById("fiber").innerHTML = " =" + fiber;
+            document.getElementById("fiber").innerHTML = " " + fiber;
         }
     
     useEffect(()=>{
@@ -171,11 +171,19 @@ const Recommendation = () => {
                     </tr>
                 </tbody>
             </table>
-            <span id="val"></span>
-            <span id="crabs"></span>
-            <span id="protien"></span>
-            <span id="fat"></span>
-            <span id="fiber"></span>
+            <div className="row totalDiv w-70">
+                <div className="col-md-5">
+                    <span className='mr-0'>SubTotal</span>
+                </div>
+                <div className="col-md-7 d-flex justify-content-around">
+                    <span className="" id="val"></span>
+                    <span className="tCarbs" id="crabs"></span>
+                    <span className="tProtein" id="protien"></span>
+                    <span id="fat"></span>
+                    <span id="fiber"></span>
+                </div>
+                
+            </div>
         </form> 
         </div>
     )
